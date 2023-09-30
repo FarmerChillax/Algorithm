@@ -70,11 +70,11 @@ func maxDepth(root *TreeNode) int {
 	return 1 + maxDepth
 }
 
-func max(a, b int) int {
-	if b > a {
-		return b
-	}
-	return a
-}
+// func max(a, b int) int {
+// 	if b > a {
+// 		return b
+// 	}
+// 	return a
+// }
 
 // @lc code=end
