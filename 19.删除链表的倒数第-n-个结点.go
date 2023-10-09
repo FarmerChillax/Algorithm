@@ -65,23 +65,17 @@ package algorithm
  * }
  */
 func removeNthFromEnd(head *ListNode, n int) *ListNode {
-	node := head
-	length := 0
-	for node != nil {
-		length++
-		node = node.Next
-	}
 	head = &ListNode{Next: head}
-	node = head
-	n = length - n
+	var slow, fast *ListNode = head, head.Next
 	for i := 0; i < n; i++ {
-		node = node.Next
+		fast = fast.Next
+	}
+	for fast != nil {
+		slow = slow.Next
+		fast = fast.Next
 	}
 
-	if node.Next != nil {
-		node.Next = node.Next.Next
-	}
-
+	slow.Next = slow.Next.Next
 	return head.Next
 }
 
