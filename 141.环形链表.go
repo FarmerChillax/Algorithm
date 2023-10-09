@@ -79,15 +79,18 @@ package algorithm
  * }
  */
 func hasCycle(head *ListNode) bool {
-	nodeMap := make(map[*ListNode]bool, 0)
-	for head != nil {
-		exist := nodeMap[head]
-		if exist {
+	if head == nil || head.Next == nil {
+		return false
+	}
+	var slow, fast *ListNode = head, head.Next
+	for fast != nil && fast.Next != nil {
+		if fast == slow {
 			return true
 		}
-		nodeMap[head] = true
-		head = head.Next
+		slow = slow.Next
+		fast = fast.Next.Next
 	}
+
 	return false
 }
 
