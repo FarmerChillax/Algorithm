@@ -48,54 +48,35 @@
 
 package algorithm
 
-import (
-	"fmt"
-	"reflect"
-	"testing"
-)
+import "sort"
 
-func Test_topKFrequent(t *testing.T) {
-	type args struct {
-		nums []int
-		k    int
+// @lc code=start
+type HeapNodeInt struct {
+	Num, Count int
+}
+
+func topKFrequent2(nums []int, k int) []int {
+	numToCount := make(map[int]int)
+	for _, n := range nums {
+		numToCount[n]++
 	}
-	tests := []struct {
-		name string
-		args args
-		want []int
-	}{
-		// TODO: Add test cases.
-		{
-			name: "case-1",
-			args: args{
-				nums: []int{1, 1, 1, 2, 2, 3},
-				k:    2,
-			},
-			want: []int{1, 2},
-		},
-		{
-			name: "case-2",
-			args: args{
-				nums: []int{-1, -1},
-				k:    1,
-			},
-			want: []int{-1},
-		},
-		{
-			name: "case-3",
-			args: args{
-				nums: []int{4, 1, -1, 2, -1, 2, 3},
-				k:    2,
-			},
-			want: []int{-1, 2},
-		},
-	}
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			if got := topKFrequent2(tt.args.nums, tt.args.k); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("topKFrequent() = %v, want %v", got, tt.want)
-			}
-			fmt.Println("-------------------------")
+	heapSlice := []HeapNodeInt{}
+	for num, count := range numToCount {
+		heapSlice = append(heapSlice, HeapNodeInt{
+			Num:   num,
+			Count: count,
 		})
 	}
+
+	sort.Slice(heapSlice, func(i, j int) bool {
+		return heapSlice[i].Count > heapSlice[j].Count
+	})
+
+	ans := make([]int, 0, k)
+	for _, item := range heapSlice[:k] {
+		ans = append(ans, item.Num)
+	}
+	return ans
 }
+
+// @lc code=end
