@@ -50,13 +50,12 @@ func reverseString(s []byte) {
 	for i, j := 0, len(s)-1; i < j; i, j = i+1, j-1 {
 		s[i], s[j] = s[j], s[i]
 	}
-
 }
 
-func reverseS(s []byte, start, end int) {
-	for i, j := start, end-1; i < j; i, j = i+1, j-1 {
-		s[i], s[j] = s[j], s[i]
-	}
-}
+// func reverseS(s []byte, start, end int) {
+// 	for i, j := start, end-1; i < j; i, j = i+1, j-1 {
+// 		s[i], s[j] = s[j], s[i]
+// 	}
+// }
 
 // @lc code=end
