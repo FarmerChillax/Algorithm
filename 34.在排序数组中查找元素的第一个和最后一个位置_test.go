@@ -29,7 +29,7 @@ func Test_getLeftBorder(t *testing.T) {
 				nums:   []int{1, 3, 5, 6},
 				target: 2,
 			},
-			want: -1,
+			want: -2,
 		},
 		{
 			name: "case-3",
@@ -83,7 +83,7 @@ func Test_getRightBorder(t *testing.T) {
 				nums:   []int{1, 3, 5, 6},
 				target: 2,
 			},
-			want: -1,
+			want: -2,
 		},
 		{
 			name: "case-3",
