@@ -55,8 +55,6 @@
 
 package algorithm
 
-import "strconv"
-
 // @lc code=start
 
 var digitsMap []string = []string{
@@ -86,7 +84,7 @@ func letterCombinations(digits string) []string {
 	// 转换为数组
 	matrix := make([]string, 0, len(digits))
 	for _, digit := range digits {
-		btn, _ := strconv.Atoi(string(digit))
+		btn := int(digit - '0')
 		matrix = append(matrix, digitsMap[btn])
 	}
 	// 开始回溯
