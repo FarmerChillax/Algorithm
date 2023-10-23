@@ -93,26 +93,20 @@ func letterCombinations(digits string) []string {
 		return letterRes
 	}
 
-	// 转换为数组
-	matrix := make([]string, 0, len(digits))
-	for _, digit := range digits {
-		// btn := int(digit - '0')
-		matrix = append(matrix, digitsMap[digit])
-	}
 	// 开始回溯
-	backTraceLetterCombination(matrix, 0)
+	backTraceLetterCombination(&digits, 0)
 	return letterRes
 }
 
-func backTraceLetterCombination(digitMatrix []string, startIndex int) {
-	if len(digitMatrix) == len(letterPath) {
+func backTraceLetterCombination(digits *string, startIndex int) {
+	if len(*digits) == len(letterPath) {
 		letterRes = append(letterRes, letterPath)
 		return
 	}
 
-	for _, digit := range digitMatrix[startIndex] {
+	for _, digit := range digitsMap[rune((*digits)[startIndex])] {
 		letterPath += string(digit)
-		backTraceLetterCombination(digitMatrix, startIndex+1)
+		backTraceLetterCombination(digits, startIndex+1)
 		// 撤销回溯
 		letterPath = letterPath[:len(letterPath)-1]
 	}
