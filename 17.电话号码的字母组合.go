@@ -57,16 +57,28 @@ package algorithm
 
 // @lc code=start
 
-var digitsMap []string = []string{
-	"", "", // index: 0, 1
-	"abc",  // 2
-	"def",  // 3
-	"ghi",  // 4
-	"jkl",  // 5
-	"mno",  // 6
-	"pqrs", // 7
-	"tuv",  // 8
-	"wxyz", // 9
+//	var digitsMap []string = []string{
+//		"", "", // index: 0, 1
+//
+// "abc",  // 2
+// "def",  // 3
+// "ghi",  // 4
+// "jkl",  // 5
+// "mno",  // 6
+// "pqrs", // 7
+// "tuv",  // 8
+// "wxyz", // 9
+//
+//	}
+var digitsMap = map[rune]string{
+	'2': "abc",
+	'3': "def",
+	'4': "ghi",
+	'5': "jkl",
+	'6': "mno",
+	'7': "pqrs",
+	'8': "tuv",
+	'9': "wxyz",
 }
 
 var (
@@ -84,8 +96,8 @@ func letterCombinations(digits string) []string {
 	// 转换为数组
 	matrix := make([]string, 0, len(digits))
 	for _, digit := range digits {
-		btn := int(digit - '0')
-		matrix = append(matrix, digitsMap[btn])
+		// btn := int(digit - '0')
+		matrix = append(matrix, digitsMap[digit])
 	}
 	// 开始回溯
 	backTraceLetterCombination(matrix, 0)
