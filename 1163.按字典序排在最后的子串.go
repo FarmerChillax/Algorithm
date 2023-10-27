@@ -46,7 +46,6 @@
 package algorithm
 
 import (
-	"fmt"
 	"sort"
 )
 
@@ -56,7 +55,6 @@ func lastSubstring(s string) string {
 
 	for i := 0; i <= len(s); i++ {
 		for j := i + 1; j <= len(s); j++ {
-			fmt.Println(s[i:j])
 			sSet[s[i:j]] = true
 		}
 	}
