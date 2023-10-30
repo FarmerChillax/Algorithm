@@ -80,18 +80,21 @@ type TreeNode struct {
  * }
  */
 func widthOfBinaryTree(root *TreeNode) int {
-	levelMin := map[int]int{}
-	var dfs func(*TreeNode, int, int) int
-	dfs = func(node *TreeNode, depth, index int) int {
-		if node == nil {
-			return 0
+	nodeArr := []*TreeNode{root}
+	max := len(nodeArr)
+	for len(nodeArr) > 0 {
+		var tmpArr []*TreeNode
+		for _, item := range nodeArr {
+			if item != nil {
+				tmpArr = append(tmpArr, item.Left, item.Right)
+			}
 		}
-		if _, ok := levelMin[depth]; !ok {
-			levelMin[depth] = index // 每一层最先访问到的节点会是最左边的节点，即每一层编号的最小值
+		nodeArr = tmpArr
+		if len(nodeArr) > max {
+			max = len(nodeArr)
 		}
-		return max(index-levelMin[depth]+1, max(dfs(node.Left, depth+1, index*2), dfs(node.Right, depth+1, index*2+1)))
 	}
-	return dfs(root, 1, 1)
+	return max
 }
 
 // func max(a, b int) int {

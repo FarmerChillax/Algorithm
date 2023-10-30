@@ -56,6 +56,7 @@ package algorithm
 
 // @lc code=start
 func lengthOfLongestSubstring(s string) int {
+
 	charMap := make(map[byte]int, len(s))
 	var ans, slow int
 	for fast := 0; fast < len(s); fast++ {
@@ -73,11 +74,11 @@ func lengthOfLongestSubstring(s string) int {
 	return ans
 }
 
-func max(a, b int) int {
-	if b > a {
-		return b
-	}
-	return a
-}
+// func max(a, b int) int {
+// 	if b > a {
+// 		return b
+// 	}
+// 	return a
+// }
 
 // @lc code=end

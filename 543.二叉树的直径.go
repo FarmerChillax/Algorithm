@@ -82,11 +82,11 @@ func getLen(root *TreeNode) int {
 	return max(leftLen, rightLen) + 1
 }
 
-func max(a, b int) int {
-	if b > a {
-		return b
-	}
-	return a
-}
+// func max(a, b int) int {
+// 	if b > a {
+// 		return b
+// 	}
+// 	return a
+// }
 
 // @lc code=end
