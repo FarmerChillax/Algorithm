@@ -65,47 +65,48 @@
  */
 package algorithm
 
-import "sort"
+import (
+	"reflect"
+	"testing"
+)
 
-// @lc code=start
-func threeSum(nums []int) [][]int {
-	sort.Ints(nums)
-	ans := make([][]int, 0)
-	var left, right int
-	for i := 0; i < len(nums)-2; i++ {
-		if nums[i] > 0 {
-			// 因为排序后是递增，当第一个元素大于0时，则表示后续不可能相加为0
-			break
-		}
-		if i > 0 && nums[i] == nums[i-1] {
-			// 去重
-			continue
-		}
-		left = i + 1
-		right = len(nums) - 1
-		for left < right {
-			tmp := nums[i] + nums[left] + nums[right]
-			if tmp == 0 {
-				ans = append(ans, []int{nums[i], nums[left], nums[right]})
-				for left < right && nums[left] == nums[left+1] {
-					left++
-				}
-				for left < right && nums[right] == nums[right-1] {
-					right--
-				}
-				left++
-				right--
-			}
-			if tmp > 0 {
-				right--
-			}
-			if tmp < 0 {
-				left++
-			}
-		}
-
+func Test_threeSum(t *testing.T) {
+	type args struct {
+		nums []int
 	}
-	return ans
+	tests := []struct {
+		name string
+		args args
+		want [][]int
+	}{
+		// TODO: Add test cases.
+		{
+			name: "case-1",
+			args: args{
+				nums: []int{-1, 0, 1, 2, -1, -4},
+			},
+			want: renderWantWithJson("[[-1,-1,2],[-1,0,1]]"),
+		},
+		{
+			name: "case-2",
+			args: args{
+				nums: []int{0, 1, 1},
+			},
+			want: renderWantWithJson("[]"),
+		},
+		{
+			name: "case-3",
+			args: args{
+				nums: []int{0, 0, 0},
+			},
+			want: renderWantWithJson("[[0,0,0]]"),
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := threeSum(tt.args.nums); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("threeSum() = %v, want %v", got, tt.want)
+			}
+		})
+	}
 }
-
-// @lc code=end
