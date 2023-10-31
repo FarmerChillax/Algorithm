@@ -54,14 +54,13 @@ func isAnagram(s string, t string) bool {
 		return false
 	}
 	records := make([]int, 26)
-	var sPointer, tPointer int
-	for ; sPointer < len(s); sPointer, tPointer = sPointer+1, tPointer+1 {
-		if s[sPointer] == t[sPointer] {
+	for index := 0; index < len(s); index++ {
+		if s[index] == t[index] {
 			continue
 		}
-		sCharIndex := s[sPointer] - 'a'
+		sCharIndex := s[index] - 'a'
 		records[sCharIndex]++
-		tCharIndex := t[tPointer] - 'a'
+		tCharIndex := t[index] - 'a'
 		records[tCharIndex]--
 	}
 	for _, record := range records {
