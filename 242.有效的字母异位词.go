@@ -53,15 +53,19 @@ func isAnagram(s string, t string) bool {
 	if len(s) != len(t) {
 		return false
 	}
-	sCountMap := make(map[rune]int)
-	for _, item := range s {
-		sCountMap[item]++
+	records := make([]int, 26)
+	var sPointer, tPointer int
+	for ; sPointer < len(s); sPointer, tPointer = sPointer+1, tPointer+1 {
+		if s[sPointer] == t[sPointer] {
+			continue
+		}
+		sCharIndex := s[sPointer] - 'a'
+		records[sCharIndex]++
+		tCharIndex := t[tPointer] - 'a'
+		records[tCharIndex]--
 	}
-
-	for _, item := range t {
-		if cnt, ok := sCountMap[item]; ok && cnt > 0 {
-			sCountMap[item]--
-		} else {
+	for _, record := range records {
+		if record != 0 {
 			return false
 		}
 	}
