@@ -66,26 +66,28 @@ package algorithm
  */
 func reverseKGroup(head *ListNode, k int) *ListNode {
 	hair := &ListNode{Next: head}
-	pre := hair
+	prev := hair
 	for head != nil {
-		tail := pre
+		tail := prev
 		for i := 0; i < k; i++ {
 			tail = tail.Next
 			if tail == nil {
 				return hair.Next
 			}
 		}
-		nex := tail.Next
+
+		next := tail.Next
 		head, tail = reverse(head, tail)
-		pre.Next = head
-		tail.Next = nex
-		pre = tail
+		prev.Next = head
+		tail.Next = next
+		prev = tail
 		head = tail.Next
 	}
 	return hair.Next
 }
 
 func reverse(head, tail *ListNode) (*ListNode, *ListNode) {
+	// 当前链表尾的下一个节点为翻转后的尾部（相当于nil)
 	prev := tail.Next
 	p := head
 	for prev != tail {
