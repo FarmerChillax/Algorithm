@@ -64,7 +64,7 @@ import (
 )
 
 // @lc code=start
-func maxProfit(prices []int) int {
+func maxProfit2(prices []int) int {
 	min := math.MaxInt
 	var ans int
 	for _, price := range prices {
