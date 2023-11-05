@@ -1,7 +1,6 @@
 package algorithm
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -48,5 +47,5 @@ func Test_searchInsert(t *testing.T) {
 			}
 		})
 	}
-	fmt.Println((2 - 1) / 2)
+
 }
