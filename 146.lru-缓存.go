@@ -90,7 +90,7 @@ func initDLinkedNode(key, value int) *DLinkedNode {
 	}
 }
 
-func Constructor(capacity int) LRUCache {
+func ConstructorLRU(capacity int) LRUCache {
 	l := LRUCache{
 		cache:    map[int]*DLinkedNode{},
 		head:     initDLinkedNode(0, 0),
