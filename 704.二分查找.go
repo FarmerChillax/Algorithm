@@ -45,7 +45,7 @@
 package algorithm
 
 // @lc code=start
-func search(nums []int, target int) int {
+func search704(nums []int, target int) int {
 	var left, right int = 0, len(nums) - 1
 	for left <= right {
 		mid := left + ((right - left) / 2)
