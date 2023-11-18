@@ -69,7 +69,7 @@ func backTracePartition(s string, startIndex int) {
 	}
 
 	for i := startIndex; i < len(s); i++ {
-		if isPalindrome(s[startIndex : i+1]) {
+		if isPalindromeStr(s[startIndex : i+1]) {
 			partitionPath = append(partitionPath, s[startIndex:i+1])
 			backTracePartition(s, i+1)
 			// 撤销回溯
@@ -79,7 +79,7 @@ func backTracePartition(s string, startIndex int) {
 
 }
 
-func isPalindrome(s string) bool {
+func isPalindromeStr(s string) bool {
 	for left, right := 0, len(s)-1; left < right; left, right = left+1, right-1 {
 		if s[left] != s[right] {
 			return false
