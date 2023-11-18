@@ -69,23 +69,6 @@ func search(nums []int, target int) int {
 		if nums[mid] == target {
 			return mid
 		}
-		// if nums[0] <= nums[mid] {
-		// 	// 当前 mid 位于旋转段
-		// 	if target < nums[mid] && target >= nums[0] {
-		// 		// target 位于旋转段中
-		// 		right = mid
-		// 	} else {
-		// 		// 旋转段最小值都大于 target，则抛弃该段
-		// 		left = mid + 1
-		// 	}
-		// } else {
-		// 	if target > nums[mid] && target <= nums[right] {
-		// 		// 右侧是升序
-		// 		left = mid + 1
-		// 	} else {
-		// 		right = mid
-		// 	}
-		// }
 		if nums[0] <= nums[mid] {
 			if nums[0] <= target && target < nums[mid] {
 				right = mid

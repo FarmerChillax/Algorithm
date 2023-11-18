@@ -87,10 +87,6 @@ func generateMatrix(n int) [][]int {
 		ans[mid][mid] = num
 	}
 
-	// for _, item := range ans {
-	// 	fmt.Println(item)
-	// }
-
 	return ans
 }
 
