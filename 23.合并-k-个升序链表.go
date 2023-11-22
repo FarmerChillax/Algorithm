@@ -70,14 +70,17 @@ package algorithm
  * }
  */
 func mergeKLists(lists []*ListNode) *ListNode {
-	if len(lists) < 1 {
+	if len(lists) == 0 {
 		return nil
 	}
-	prevList := lists[0]
-	for i := 1; i < len(lists); i++ {
-		prevList = mergeList(prevList, lists[i])
+	if len(lists) == 1 {
+		return lists[0]
 	}
-	return prevList
+
+	mid := len(lists) / 2
+	left := mergeKLists(lists[:mid])
+	right := mergeKLists(lists[mid:])
+	return mergeList(left, right)
 }
 
 func mergeList(list1, list2 *ListNode) *ListNode {
