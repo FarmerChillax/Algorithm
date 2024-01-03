@@ -133,6 +133,21 @@ func Test_zigzagLevelOrder(t *testing.T) {
 				{4, 5},
 			},
 		},
+		{
+			name: "case-5",
+			args: args{
+				root: &TreeNode{
+					Val: 1,
+					Left: &TreeNode{
+						Val: 2,
+					},
+				},
+			},
+			want: [][]int{
+				{1},
+				{2},
+			},
+		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
