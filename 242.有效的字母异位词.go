@@ -53,7 +53,7 @@ func isAnagram(s string, t string) bool {
 	if len(s) != len(t) {
 		return false
 	}
-	records := make([]int, 26)
+	records := [26]int{}
 	for index := 0; index < len(s); index++ {
 		if s[index] == t[index] {
 			continue

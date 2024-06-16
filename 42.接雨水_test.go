@@ -48,30 +48,31 @@
 
 package algorithm
 
-// @lc code=start
-func trap(height []int) int {
-	var leftHeight int
-	for i := 0; i < len(height); i++ {
-		if height[i] > 0 {
-			leftHeight = i
-			break
-		}
-		if i == len(height)-1 {
-			// 整个数组都为 0
-			return 0
-		}
-	}
+import "testing"
 
-	var ans int
-	for i := 1; i < len(height); i++ {
-		if height[i] >= height[leftHeight] {
-			// 移动左侧指针
-			leftHeight = i
-		} else {
-			ans += height[leftHeight] - height[i]
-		}
+func Test_trap(t *testing.T) {
+	type args struct {
+		height []int
 	}
-	return ans
+	tests := []struct {
+		name string
+		args args
+		want int
+	}{
+		// TODO: Add test cases.
+		// {
+		// 	name: "case-1",
+		// 	args: args{
+		// 		height: []int{0, 1, 0, 2, 1, 0, 1, 3, 2, 1, 2, 1},
+		// 	},
+		// 	want: 6,
+		// },
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := trap(tt.args.height); got != tt.want {
+				t.Errorf("trap() = %v, want %v", got, tt.want)
+			}
+		})
+	}
 }
-
-// @lc code=end
