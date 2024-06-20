@@ -52,40 +52,48 @@
  */
 package algorithm
 
-// @lc code=start
-/**
- * Definition for a binary tree node.
- * type TreeNode struct {
- *     Val int
- *     Left *TreeNode
- *     Right *TreeNode
- * }
- */
-func rightSideView(root *TreeNode) []int {
-	ans := []int{}
-	if root == nil {
-		return ans
-	}
-	stack := []*TreeNode{root}
-	secStack := []*TreeNode{}
+import (
+	"reflect"
+	"testing"
+)
 
-	for idx := 0; idx < len(stack); idx++ {
-		treeNode := stack[idx]
-		if treeNode.Left != nil {
-			secStack = append(secStack, treeNode.Left)
-		}
-		if treeNode.Right != nil {
-			secStack = append(secStack, treeNode.Right)
-		}
-		if idx == len(stack)-1 {
-			ans = append(ans, treeNode.Val)
-			stack = secStack
-			secStack = []*TreeNode{}
-			idx = -1
-		}
+func Test_rightSideView(t *testing.T) {
+	type args struct {
+		root *TreeNode
 	}
-
-	return ans
+	tests := []struct {
+		name string
+		args args
+		want []int
+	}{
+		// TODO: Add test cases.
+		{
+			name: "case-1",
+			args: args{
+				root: &TreeNode{
+					Val: 1,
+					Left: &TreeNode{
+						Val: 2,
+						Right: &TreeNode{
+							Val: 5,
+						},
+					},
+					Right: &TreeNode{
+						Val: 3,
+						Right: &TreeNode{
+							Val: 4,
+						},
+					},
+				},
+			},
+			want: []int{1, 3, 4},
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := rightSideView(tt.args.root); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("rightSideView() = %v, want %v", got, tt.want)
+			}
+		})
+	}
 }
-
-// @lc code=end

@@ -50,15 +50,15 @@ package algorithm
 
 // @lc code=start
 func majorityElement(nums []int) int {
-	var major, cnt int
-	for idx, num := range nums {
-		if cnt == 0 {
+	var major, count int
+	for idx := range nums {
+		if count == 0 {
 			major = nums[idx]
 		}
-		if major == num {
-			cnt++
+		if major == nums[idx] {
+			count++
 		} else {
-			cnt--
+			count--
 		}
 	}
 	return major

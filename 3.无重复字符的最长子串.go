@@ -56,21 +56,17 @@ package algorithm
 
 // @lc code=start
 func lengthOfLongestSubstring(s string) int {
-
-	charMap := make(map[byte]int, len(s))
+	charMap := make(map[byte]int)
 	var ans, slow int
 	for fast := 0; fast < len(s); fast++ {
 		idx, ok := charMap[s[fast]]
-		if ok && idx >= slow && idx != fast {
-			// 如果记录的下标不一致，则表示子串中出现过该字符
-			// 移动窗口边界到该字符后一位
+		if ok && idx != fast && idx >= slow {
 			slow = charMap[s[fast]] + 1
 		}
 		charMap[s[fast]] = fast
 		subLen := fast - slow + 1
 		ans = max(ans, subLen)
 	}
-
 	return ans
 }
 
