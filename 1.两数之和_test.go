@@ -77,7 +77,6 @@ func Test_twoSum(t *testing.T) {
 		args args
 		want []int
 	}{
-		// TODO: Add test cases.
 		{
 			name: "case-1",
 			args: args{
@@ -85,6 +84,14 @@ func Test_twoSum(t *testing.T) {
 				target: 9,
 			},
 			want: []int{0, 1},
+		},
+		{
+			name: "case-2",
+			args: args{
+				nums:   []int{1, 3, 4, 2},
+				target: 9,
+			},
+			want: []int{},
 		},
 	}
 	for _, tt := range tests {
